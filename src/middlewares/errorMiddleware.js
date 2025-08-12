@@ -4,7 +4,7 @@ import logger from "../config/logging.js";
 
 const errorMiddleware = (err, req, res, next) => {
   if (err instanceof ResponseError) {
-    logger.info(err.message);
+    logger.error(err.message);
     return res.status(err.stts).json({ message: err.message });
   }
 
@@ -13,7 +13,7 @@ const errorMiddleware = (err, req, res, next) => {
       message: e.message,
       path: e.path.join("."),
     }));
-    logger.info(err.message);
+    logger.error(err.message);
     return res.status(400).json({ message: formatted });
   }
 
